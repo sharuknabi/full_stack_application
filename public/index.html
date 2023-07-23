@@ -24,7 +24,7 @@
                     <br>
                     <input type="text" class="box" id="email" name="email"  placeholder="Email" required />
                     <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required />
+                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" pattern="^\+?[0-9]{1,4}-?[0-9]{8,12}$" title="Please enter a valid phone number. It can start with an optional '+' sign followed by 1 to 4 digits for the country code, and 8 to 12 digits for the phone number."  required />
                     <br>
                     <input type="text" class="box" id="comment" name="comments" placeholder="comments" required />
                     <br>
