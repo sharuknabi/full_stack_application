@@ -6,70 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp Form - MongoDB</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col-md-3">
 
             </div>
             <div class="col-md-6 main">
-                <form action="/sign_up" method="POST">
+                <form action="/sign_up" method="POST" autocomplete="on">
                     <h2>Contact Form</h2>
-                    <input type="text" class="box" id="name" name="name" placeholder="Name" pattern="[A-Za-z ]{1,}" title="Please enter a valid name (letters and spaces only)" required />
+                    <input type="text" class="box" id="name" name="name" placeholder="Name" pattern="[A-Za-z ]{1,}"
+                        title="Please enter a valid name (letters and spaces only)" required />
                     <br>
-                    <input type="text" class="box" id="email" name="email"  placeholder="Email" required />
+                    <input type="text" class="box" id="email" name="email" placeholder="Email" required />
                     <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" pattern="^\+?[0-9]{1,4}-?[0-9]{8,12}$" title="Please enter a valid phone number. It can start with an optional '+' sign followed by 1 to 4 digits for the country code, and 8 to 12 digits for the phone number."  required />
+                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile"
+                        pattern="^\+?[0-9]{1,4}-?[0-9]{8,12}$"
+                        title="Please enter a valid phone number. It can start with an optional '+' sign followed by 1 to 4 digits for the country code, and 8 to 12 digits for the phone number."
+                        required />
                     <br>
-                    <input type="text" class="box" id="comment" name="comments" placeholder="comments" required />
+                    <textarea class="box" id="comment" name="comments" placeholder="Comment here...."
+                        required></textarea>
                     <br>
-                    <input type="submit" value="Submit" id="submit" />
+                    <input type="submit" value="Submit" id="submit" disabled />
+                    
                 </form>
-                
+
             </div>
-            
+
             <div class="col-md-3">
             </div>
-            
+
         </div>
-        
+
     </div>
     <p id="emailAvailability"></p>
 
     <script>
+       document.addEventListener('DOMContentLoaded', function () {
+    const emailInput = document.getElementById('email');
+    const emailAvailability = document.getElementById('emailAvailability');
+    const submitButton = document.getElementById('submit'); // Get the submit button element
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const emailInput = document.getElementById('email');
-            const emailAvailability = document.getElementById('emailAvailability');
-            
-            emailInput.addEventListener('input', function () {
-                const email = emailInput.value;
-                const xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            if (response.available) {
-                                emailAvailability.textContent = "Email is available!";
-                            } else {
-                                emailAvailability.textContent = "Email is already taken.";
-                            }
-                        } else {
-                            emailAvailability.textContent = "Error checking email availability.";
-                        }
-                    }
-                };
+    emailInput.addEventListener('input', function () {
+      const email = emailInput.value;
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.available) {
+              emailAvailability.textContent = "Email is available!";
+              submitButton.removeAttribute("disabled"); // Enable the submit button
+            } else {
+              emailAvailability.textContent = "Email is already taken.";
+              submitButton.setAttribute("disabled", "disabled"); // Disable the submit button
+            }
+          } else {
+            emailAvailability.textContent = "Error checking email availability.";
+          }
+        }
+      };
 
-                xhr.open('GET', '/check_email?email=' + encodeURIComponent(email), true);
-                xhr.send();
-            });
-        });
-        
+      xhr.open('GET', '/check_email?email=' + encodeURIComponent(email), true);
+      xhr.send();
+    });
+  });
     </script>
 </body>
 
