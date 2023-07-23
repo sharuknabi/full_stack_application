@@ -50,3 +50,10 @@ input[type=submit]:hover{
     font-size: 15px;
     font-weight: bold;
 }
+#comment{
+    height:200px;
+    width:100%;
+    border:1px solid green;
+    color: blue;
+    
+}
