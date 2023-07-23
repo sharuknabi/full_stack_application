@@ -21,11 +21,11 @@
             <div class="col-md-6 main">
                 <form action="/sign_up" method="POST">
                     <h2>Contact Form</h2>
-                    <input type="text" class="box" id="name" name="name" placeholder="Name" required />
+                    <input type="text" class="box" id="name" name="name" placeholder="Name" pattern="[A-Za-z ]{1,}" title="Please enter a valid name (letters and spaces only)" required />
                     <br>
                     <input type="text" class="box" id="email" name="email"  placeholder="Email" required />
                     <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required />
+                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" pattern="[A-Za-z ]{1,}" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required />
                     <br>
                     <input type="text" class="box" id="comment" name="comments" placeholder="comments" required />
                     <br>

@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../html"
+		},
+		{
+			"path": "../node"
+		},
+		{
+			"path": "../../Desktop/web-development"
+		},
+		{
+			"path": "../../Desktop/Yarikul-projct"
+		},
+		{
+			"path": "../../Desktop/backend-form"
+		},
+		{
+			"path": "../../Desktop/Frontend-form"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Desktop/form with nodejs and mongo db"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "data-to-db"
+	}
+}
